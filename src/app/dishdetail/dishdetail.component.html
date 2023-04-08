@@ -28,19 +28,18 @@
     </div>
   </div>
   <div fxFlex="40">
+  <mat-list *ngIf="dish" >
+    <h3 >Comments</h3>
+    <mat-list-item *ngFor="let comment of dish.comments || []">
+        <h4 matListItemLine> {{comment.comment}} </h4>
+        <p matListItemLine >
+           {{comment.rating}} Stars
+        </p>
+        <p matListItemLine >
+          <span> --{{comment.author}} {{comment.date | date}}</span>
+       </p>
+        <span matListItemLine></span>
 
-    <div >
-        <h1>Comments</h1>
-    </div>
-  <mat-list >
-    <mat-list-item *ngFor="let commentObject of dish.comments">
-      <p matLine> {{commentObject.comment}} </p>
-      <p matLine>
-        <span> {{commentObject.rating}} Stars</span>
-      </p>
-      <p matLine>
-        <span> --{{commentObject.author}} {{commentObject.date | date}}</span>
-      </p>
     </mat-list-item>
   </mat-list>
   </div>
