@@ -55,7 +55,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
 
   ],
   providers: [DishService, PromotionService, LeaderService],
