@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss']
 })
-export class DishdetailComponent {
+export class DishdetailComponent implements  OnInit {
   dish!: Dish;
 
   constructor(private dishservice: DishService,
