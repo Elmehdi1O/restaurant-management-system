@@ -45,9 +45,38 @@
           <span> --{{comment.author}} {{comment.date | date}}</span>
        </p>
         <span matListItemLine></span>
-
     </mat-list-item>
   </mat-list>
+  </div>
+  <div flex class="form-size">
+    <div *ngIf="previewShown">
+      {{ formComment.value | json}}
+    </div>
+      <h3> fell free to add comments</h3>
+      <form novalidate [formGroup]="formComment"  (ngSubmit)="onSubmit()" class="full-width"  >
+          <mat-slider min="1" max="5" step="1" thumbLabel showTickMarks  class="half-width">
+            <input matSliderThumb formControlName="rating">
+          </mat-slider>
+
+          <p >
+            <mat-form-field class="half-width">
+              <input matInput  formControlName="author" required type="text" placeholder="Name" >
+              <mat-error  *ngIf="formErrors['author']">
+                {{ formErrors['author'] }}
+              </mat-error>
+          </mat-form-field>
+          </p>
+        <mat-form-field  class="half-width" >
+            <textarea matInput formControlName="comment" cols="32" rows="10" type="text" placeholder="Your Comment" ></textarea>
+            <mat-error *ngIf="formErrors['comment']">
+             {{ formErrors['comment']}}
+            </mat-error>
+        </mat-form-field>
+        <p>
+          <button mat-raised-button [disabled]="formComment.invalid" color="primary">Submit</button>
+        </p>
+      </form>
+  </div>
   </div>
 
 
