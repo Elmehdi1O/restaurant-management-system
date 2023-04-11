@@ -57,8 +57,7 @@
           <mat-slider min="1" max="5" step="1" thumbLabel showTickMarks  class="half-width">
             <input matSliderThumb formControlName="rating">
           </mat-slider>
-
-          <p >
+          <p>
             <mat-form-field class="half-width">
               <input matInput  formControlName="author" required type="text" placeholder="Name" >
               <mat-error  *ngIf="formErrors['author']">
