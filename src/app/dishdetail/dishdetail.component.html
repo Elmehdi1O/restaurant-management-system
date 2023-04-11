@@ -14,22 +14,24 @@
     </div>
   </div>
 
-    <div fxFlex *ngIf="dish">
+    <div fxFlex="40" *ngIf="dish" >
       <mat-card>
         <img mat-card-image src='{{dish.image}}' alt='{{dish.name}}'>
         <mat-card-content>
           <p>{{dish.description}}
           </p>
         </mat-card-content>
-        <mat-card-actions>
+    <mat-card-actions fxLayout="row"  fxLayoutAlign="center center">
+          <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
           <button mat-button (click)="goBack()">BACK</button>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
+          <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
         </mat-card-actions>
       </mat-card>
     </div>
     <div [hidden]="dish">
-      <mat-spinner><h4>Loading . . . Please Wait</h4></mat-spinner>
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
     </div>
   <div fxFlex="40">
   <mat-list *ngIf="dish" >
