@@ -16,7 +16,7 @@
 
     <div fxFlex="40" *ngIf="dish" >
       <mat-card>
-        <img mat-card-image src='{{dish.image}}' alt='{{dish.name}}'>
+        <img mat-card-image src="{{ baseURL + dish.image }}" alt='{{dish.name}}'>
         <mat-card-content>
           <p>{{dish.description}}
           </p>
