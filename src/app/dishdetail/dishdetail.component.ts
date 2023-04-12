@@ -13,7 +13,7 @@ import { Comment } from '../shared/comment';
   styleUrls: ['./dishdetail.component.scss']
 })
 export class DishdetailComponent implements  OnInit {
-  dish!: Dish;
+  dish: Dish | undefined;
   dishIds!: string[];
   prev!: string;
   next!: string;
@@ -25,6 +25,7 @@ export class DishdetailComponent implements  OnInit {
 
   };
   errMess!:string;
+  dishcopy: Dish | undefined;
 
   validationMessages: { [key: string]: { [key: string]: string } }  = {
     'author': {
@@ -47,7 +48,7 @@ export class DishdetailComponent implements  OnInit {
   ngOnInit() {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params)=>   this.dishservice.getDish(params['id'])))
-  .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); }, errMess => this.errMess = errMess);
+  .subscribe(dish => { this.dish = dish; this.dishcopy = dish, this.setPrevNext(dish.id); }, errMess => this.errMess = errMess);
     this.createFormComment();
   }
   previewShown!:boolean;
@@ -103,7 +104,16 @@ export class DishdetailComponent implements  OnInit {
         formCommentValues.author,
         new Date().toISOString()
       );
-      this.dish.comments.push(newComment);
+      this.dishcopy?.comments?.push(newComment);
+      if(this.dishcopy){
+        console.log(this.dishcopy.comments)
+        this.dishservice.putDish(this.dishcopy)
+        .subscribe(dish => {
+          this.dish = dish; this.dishcopy = dish;
+        },
+        errmess => { this.dish = undefined; this.dishcopy = undefined; this.errMess = <any>errmess; });
+
+      }
       this.formComment.reset({
         author: '',
         rating: 5,
