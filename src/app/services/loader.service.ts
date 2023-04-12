@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Leader } from "../shared/leader";
-import { LEADERS } from "../shared/leaders";
-import { of, delay, Observable, map } from "rxjs";
+import { Observable, map } from "rxjs";
 import { baseURL } from "../shared/baseurl";
 import { HttpClient } from "@angular/common/http";
 

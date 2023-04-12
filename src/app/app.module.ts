@@ -35,6 +35,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
+import { ProcessHTTPMsgService } from './services/process-http-msg.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { baseURL } from './shared/baseurl';
     HttpClientModule
 
   ],
-  providers: [DishService, PromotionService, LeaderService, { provide: 'BaseURL', useValue: baseURL}],
+  providers: [DishService, PromotionService, LeaderService, { provide: 'BaseURL', useValue: baseURL}, ProcessHTTPMsgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
