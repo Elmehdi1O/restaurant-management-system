@@ -49,7 +49,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     HomeComponent,
     ContactComponent,
     LoginComponent,
-    HighlightDirective
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,

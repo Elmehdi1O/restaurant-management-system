@@ -5,11 +5,17 @@ import { Promotion } from '../shared/promotion';
 import { DishService } from '../services/dish.service';
 import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/loader.service';
+import { expand, flyInOut } from '../animations/app.animation';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
+  animations: [flyInOut(), expand()  ]
 })
 export class HomeComponent implements OnInit {
   dish!: Dish;
@@ -24,7 +30,7 @@ export class HomeComponent implements OnInit {
     private promotionservice: PromotionService,
     private leaderService: LeaderService,
     @Inject('BaseURL') private BaseURL: string) {
-      this.baseURL = BaseURL;
+      this.baseURL = this.BaseURL;
     }
 
   ngOnInit() {

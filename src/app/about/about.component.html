@@ -1,6 +1,7 @@
 <div class="container"
   fxLayout="column"
-  fxLayoutGap="10px">
+  fxLayoutGap="10px"
+  >
 
   <div fxFlex>
     <div>
@@ -54,11 +55,11 @@
   </div>
 
 
-  <div fxFlex>
+  <div fxFlex *ngIf="leaders" [@expand]>
     <h2>Corporate Leadership</h2>
     <p><mat-list>
       <mat-list-item *ngFor="let leader of leaders">
-        <img matListItemAvatar  src={{leader.image}} alt={{leader.name}}>
+        <img matListItemAvatar  src="{{ baseURL + leader.image}}" alt={{leader.name}}>
         <h3 matListItemTitle>{{leader.name}} {{leader.abbr}} </h3>
         <p matListItemLine>
           <span>{{leader.designation}}</span>

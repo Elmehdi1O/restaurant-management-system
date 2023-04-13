@@ -5,7 +5,8 @@
     fxLayout.xs="column"
     fxLayoutAlign.gt-md="space-around center"
     fxLayoutGap="10px"
-    fxLayoutGap.xs="0">
+    fxLayoutGap.xs="0"
+   >
 
   <div fxFlex="100">
     <div>
@@ -14,7 +15,7 @@
     </div>
   </div>
 
-    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" >
+    <div fxFlex="40" *ngIf="dish"[@visibility]="visibility" [@expand]  >
       <mat-card>
         <img mat-card-image src="{{ baseURL + dish.image }}" alt='{{dish.name}}'>
         <mat-card-content>
@@ -38,7 +39,7 @@
       <h4>{{errMess}}</h4>
     </div>
   <div fxFlex="40">
-  <mat-list *ngIf="dish" [@visibility]="visibility"  >
+  <mat-list *ngIf="dish" [@visibility]="visibility"  [@expand] >
     <h3 >Comments</h3>
     <mat-list-item *ngFor="let comment of dish.comments || []">
         <h4 matListItemLine> {{comment.comment}} </h4>
