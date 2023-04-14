@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactType, Feedback } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
-interface FormErrors {
+import { expand, flyInOut } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
-  [key: string]: string;
-
-}
 
 @Component({
   selector: 'app-contact',
@@ -16,16 +13,18 @@ interface FormErrors {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
     },
-  animations: [flyInOut()]
+  animations: [flyInOut(), expand()]
 })
 
 export class ContactComponent implements OnInit {
 
   feedbackForm!: FormGroup;
-  feedback!: Feedback;
+  feedback: Feedback | null = null;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective: any;
-  constructor(private fb: FormBuilder) {
+  hidenForm: boolean = true;
+  displaySpinner!:boolean;
+  constructor(private fb: FormBuilder, private feedbackService: FeedbackService) {
     this.createForm();
   }
 
@@ -101,17 +100,32 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.feedback = this.feedbackForm.value;
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
-    this.feedbackFormDirective.resetForm();
+    if(this.feedbackForm.valid){
+      this.displaySpinner = true;
+      this.hidenForm = false
+      this.feedbackService.submitFeedback(this.feedbackForm.value).subscribe(feedback => {
+        this.feedback = feedback;
+        this.displaySpinner = false;
+        setTimeout(()=> {
+          this.hidenForm = true;
+          this.feedback = null;
+
+        }, 5000)
+      });
+
+      this.feedbackForm.reset({
+        firstname: '',
+        lastname: '',
+        telnum: '',
+        email: '',
+        agree: false,
+        contacttype: 'None',
+        message: ''
+      });
+      this.feedbackFormDirective.resetForm();
+
+    }
+
   }
 
 }
