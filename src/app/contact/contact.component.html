@@ -78,7 +78,9 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
-    <mat-spinner *ngIf="displaySpinner"></mat-spinner>
+    <div *ngIf="displaySpinner">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+    </div>
     <div *ngIf="feedback">
         <p>
             <span>Fist name: {{ feedback.firstname}}</span>
