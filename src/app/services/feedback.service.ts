@@ -9,14 +9,14 @@ import { ProcessHTTPMsgService } from "./process-http-msg.service";
   providedIn: 'root'
 })
 export class FeedbackService {
-  constructor(private http: HttpClient) { }
-  submitFeedback(data: Feedback, processHTTPMsgService: ProcessHTTPMsgService ): Observable<Feedback>{
+  constructor(private http: HttpClient, private processHTTPMsgService: ProcessHTTPMsgService ) { }
+  submitFeedback(data: Feedback ): Observable<Feedback>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    return this.http.post<Feedback>( baseURL + 'feedback', data, httpOptions).pipe(catchError(processHTTPMsgService.handleError));
+    return this.http.post<Feedback>( baseURL + 'feedback', data, httpOptions).pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
 }
