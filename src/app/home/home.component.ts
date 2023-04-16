@@ -10,7 +10,7 @@ import { expand, flyInOut } from '../animations/app.animation';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'

@@ -1,6 +1,11 @@
 
+// Import the Angular Material theme
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import 'variables';
+
+// Import the _variables.scss file
+@import './_variables.scss';
+
+// Import the Font Awesome SCSS file
 @import '../node_modules/font-awesome/scss/font-awesome';
 
 .container {
